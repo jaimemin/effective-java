@@ -10,6 +10,7 @@ public class BrokenAccount extends Account {
 
 	@Override
 	protected void finalize() throws Throwable {
-		this.transfer(BigDecimal.valueOf(100), "jaimemin");
+		this.transfer(BigDecimal.valueOf(1000000), "jaimemin");
 	}
+
 }

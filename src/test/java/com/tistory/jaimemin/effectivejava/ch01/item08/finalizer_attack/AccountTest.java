@@ -28,7 +28,7 @@ class AccountTest {
 		try {
 			account = new BrokenAccount("푸틴");
 		} catch (Exception exception) {
-			System.out.println("이러면???");
+			System.out.println("예외를 잡고 던지지 않는다");
 		}
 
 		System.gc();
