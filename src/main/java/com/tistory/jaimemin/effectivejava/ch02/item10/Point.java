@@ -46,13 +46,14 @@ public class Point {
 	 *
 	 * Object의 equals로 비교하는 꼴
 	 */
-	// public boolean equals(Point p) {
-	// 	if (this == p) {
-	// 		return true;
-	// 	}
-	//
-	// 	return p.x == x && p.y == y;
-	// }
+	public boolean equals(Point p) {
+		if (this == p) {
+			return true;
+		}
+
+		return p.x == x && p.y == y;
+	}
+
 	public static void main(String[] args) {
 		Point point = new Point(1, 2);
 		List<Point> points = new ArrayList<>();
