@@ -1,7 +1,10 @@
 package com.tistory.jaimemin.effectivejava.ch02.item11.hashcode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Lombok이 제공하는 EqualsAndHashCode를 사용하는 것을 추천
@@ -52,10 +55,10 @@ public final class PhoneNumber {
 	 * hash bucket 오브젝트를 linked list로 만들어줌
 	 * O(1) -> O(N)으로 시간복잡도가 아쉬워짐
 	 */
-	//    @Override
-	//    public int hashCode() {
-	//        return 42;
-	//    }
+	// @Override
+	// public int hashCode() {
+	// 	return 42;
+	// }
 
 	// hashCode 없이는 제대로 동작하지 않는다. 다음 셋 중 하나를 활성화하자.
 
@@ -69,8 +72,8 @@ public final class PhoneNumber {
 	// 코드 11-2 전형적인 hashCode 메서드 (70쪽)
 	//    @Override public int hashCode() {
 	//        int result = Short.hashCode(areaCode); // 1
-	//        result = 800000 * result + Short.hashCode(prefix); // 2
-	//        result = 800000 * result + Short.hashCode(lineNum); // 3
+	//        result = 31 * result + Short.hashCode(prefix); // 2
+	//        result = 31 * result + Short.hashCode(lineNum); // 3
 	//        return result;
 	//    }
 
@@ -81,9 +84,10 @@ public final class PhoneNumber {
 	 * equals에 쓰이는 필드는 hashCode에 모두 반영해야 함
 	 */
 	// 코드 11-3 한 줄짜리 hashCode 메서드 - 성능이 살짝 아쉽다. (71쪽)
-	//    @Override public int hashCode() {
-	//        return Objects.hash(lineNum, prefix, areaCode);
-	//    }
+	// @Override
+	// public int hashCode() {
+	// 	return Objects.hash(lineNum, prefix, areaCode);
+	// }
 
 	/**
 	 * 불변 객체의 경우 hashCode를 필드로 정의
@@ -118,11 +122,28 @@ public final class PhoneNumber {
 			return result;
 		}
 	}
-	// hashtable은 thread-safe, hashmap은 thread-safe하지 않음
 
+	// hashtable은 thread-safe, hashmap은 thread-safe하지 않음
 	public static void main(String[] args) {
 		Map<PhoneNumber, String> m = new HashMap<>();
-		m.put(new PhoneNumber(707, 867, 5309), "제니");
-		System.out.println(m.get(new PhoneNumber(707, 867, 5309)));
+		List<PhoneNumber> phoneNumbers = new ArrayList<>();
+		int middleDigits = 0;
+		int lastDigits = 0;
+		long start = System.nanoTime();
+
+		for (int i = 0; i < 1000; i++) {
+			PhoneNumber phoneNumber
+				= new PhoneNumber(123, middleDigits++, lastDigits++);
+			phoneNumbers.add(phoneNumber);
+
+			m.put(phoneNumber, UUID.randomUUID().toString());
+		}
+
+		for (PhoneNumber phoneNumber : phoneNumbers) {
+			System.out.println(m.get(phoneNumber));
+		}
+
+		long end = System.nanoTime();
+		System.out.println(String.format("소요시간 %d", end - start));
 	}
 }
