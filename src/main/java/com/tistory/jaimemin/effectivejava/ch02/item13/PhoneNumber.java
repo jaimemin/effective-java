@@ -67,7 +67,7 @@ public final class PhoneNumber implements Cloneable {
 	public static void main(String[] args) {
 		PhoneNumber pn = new PhoneNumber(707, 867, 5309);
 		Map<PhoneNumber, String> m = new HashMap<>();
-		m.put(pn, "제니");
+		m.put(pn, "jaimemin");
 		PhoneNumber clone = pn.clone();
 		System.out.println(m.get(clone));
 

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class CompareToConvention {
 
 	/**
-	 * Object.equals에 더해서 순서까지 비교하고 Generic을 지원
+	 * Object.equals에 더해서 순서까지 비교
 	 * 따라서, 반사성, 대치성, 추이성, 일관성 다 지켜야함
 	 */
 	public static void main(String[] args) {
@@ -20,8 +20,8 @@ public class CompareToConvention {
 
 		// p88, 대칭성
 		System.out.println("대치성 확인");
-		System.out.println(String.format("n1 > n2 result ? %d", n1.compareTo(n2)));
-		System.out.println(String.format("n2 < n1 result ? %d", n2.compareTo(n1)));
+		System.out.println(String.format("n1 > n2 result ? %s", (n1.compareTo(n2)) > 0));
+		System.out.println(String.format("n2 < n1 result ? %s", (n2.compareTo(n1)) < 0));
 
 		// p89, 추이성
 		System.out.println("추이성 확인");
@@ -32,8 +32,8 @@ public class CompareToConvention {
 		// p89, 일관성
 		System.out.println("일관성 확인");
 		System.out.println(String.format("n4 == n2 ? %s", isSame(n4.compareTo(n2))));
-		System.out.println(String.format("n2 > n1 ? %d", n2.compareTo(n1)));
-		System.out.println(String.format("n4 > n1 ? %d", n4.compareTo(n1)));
+		System.out.println(String.format("n2 > n1 ? %s", (n2.compareTo(n1)) > 0));
+		System.out.println(String.format("n4 > n1 ? %s", (n4.compareTo(n1)) > 0));
 
 		// p89, compareTo가 0이라면 equals는 true여야 한다. (아닐 수도 있고..)
 		BigDecimal oneZero = new BigDecimal("1.0");
