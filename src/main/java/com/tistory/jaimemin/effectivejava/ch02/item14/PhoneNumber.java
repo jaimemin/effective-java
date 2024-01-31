@@ -7,7 +7,7 @@ import java.util.TreeSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 // PhoneNumber를 비교할 수 있게 만든다. (91-92쪽)
-public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
+public final class PhoneNumber implements Cloneable {
 
 	private final short areaCode, prefix, lineNum;
 
@@ -86,20 +86,20 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
 	 * Primitive Type의 경우 해당 타입의 박싱 비교자를 쓰는 것을 권장
 	 */
 	// 코드 14-2 기본 타입 필드가 여럿일 때의 비교자 (91쪽)
-	@Override
-	public int compareTo(PhoneNumber pn) {
-		int result = Short.compare(areaCode, pn.areaCode);
-
-		if (result == 0) {
-			result = Short.compare(prefix, pn.prefix);
-
-			if (result == 0) {
-				result = Short.compare(lineNum, pn.lineNum);
-			}
-		}
-
-		return result;
-	}
+	// @Override
+	// public int compareTo(PhoneNumber pn) {
+	// 	int result = Short.compare(areaCode, pn.areaCode);
+	//
+	// 	if (result == 0) {
+	// 		result = Short.compare(prefix, pn.prefix);
+	//
+	// 		if (result == 0) {
+	// 			result = Short.compare(lineNum, pn.lineNum);
+	// 		}
+	// 	}
+	//
+	// 	return result;
+	// }
 
 	/**
 	 * Java 8+부터 제공하는 Comparator
@@ -119,11 +119,6 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
 			.thenComparingInt(pn -> pn.getPrefix())
 			.thenComparingInt(pn -> pn.lineNum);
 
-	// @Override
-	// public int compareTo(PhoneNumber pn) {
-	// 	return COMPARATOR.compare(this, pn);
-	// }
-
 	private static PhoneNumber randomPhoneNumber() {
 		Random rnd = ThreadLocalRandom.current();
 
@@ -133,7 +128,7 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
 	}
 
 	public static void main(String[] args) {
-		Set<PhoneNumber> s = new TreeSet<>();
+		Set<PhoneNumber> s = new TreeSet<>(COMPARATOR);
 
 		for (int i = 0; i < 10; i++) {
 			s.add(randomPhoneNumber());

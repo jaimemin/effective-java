@@ -44,17 +44,17 @@ public class HashTable implements Cloneable {
 	 * copy -> entryC[]
 	 * entryH[0] == entryC[0]
 	 */
-	//    @Override
-	//    public HashTable clone() {
-	//        HashTable result = null;
-	//        try {
-	//            result = (HashTable)super.clone();
-	//            result.buckets = this.buckets.clone(); // p82, shallow copy 라서 위험하다.
-	//            return result;
-	//        } catch (CloneNotSupportedException e) {
-	//            throw  new AssertionError();
-	//        }
-	//    }
+	@Override
+	public HashTable clone() {
+		HashTable result = null;
+		try {
+			result = (HashTable)super.clone();
+			result.buckets = this.buckets.clone(); // p82, shallow copy 라서 위험하다.
+			return result;
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError();
+		}
+	}
 
 	/**
 	 * hasTable -> entryH[],
@@ -63,25 +63,24 @@ public class HashTable implements Cloneable {
 	 *
 	 * 멀티쓰레드 환경에서는 synchronized 키워드까지 붙여야함
 	 */
-	@Override
-	public HashTable clone() {
-		HashTable result = null;
-		try {
-			result = (HashTable)super.clone();
-			result.buckets = new Entry[this.buckets.length]; // 이 과정 꼭 포함
-
-			for (int i = 0; i < this.buckets.length; i++) {
-				if (buckets[i] != null) {
-					result.buckets[i] = this.buckets[i].deepCopy(); // p83, deep copy
-				}
-			}
-
-			return result;
-		} catch (CloneNotSupportedException e) {
-			throw new AssertionError();
-		}
-	}
-
+	// @Override
+	// public HashTable clone() {
+	// 	HashTable result = null;
+	// 	try {
+	// 		result = (HashTable)super.clone();
+	// 		result.buckets = new Entry[this.buckets.length]; // 이 과정 꼭 포함
+	//
+	// 		for (int i = 0; i < this.buckets.length; i++) {
+	// 			if (buckets[i] != null) {
+	// 				result.buckets[i] = this.buckets[i].deepCopy(); // p83, deep copy
+	// 			}
+	// 		}
+	//
+	// 		return result;
+	// 	} catch (CloneNotSupportedException e) {
+	// 		throw new AssertionError();
+	// 	}
+	// }
 	public static void main(String[] args) {
 		HashTable hashTable = new HashTable();
 		Entry entry = new Entry(new Object(), new Object(), null);

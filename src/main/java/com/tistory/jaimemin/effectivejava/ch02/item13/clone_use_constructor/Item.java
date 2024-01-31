@@ -12,12 +12,16 @@ public class Item implements Cloneable {
 	 */
 	@Override
 	public Item clone() {
-		// Item result = (Item) super.clone(); // 제대로 구현하는 방법
-		//
-		// return result;
-		Item item = new Item();
-		item.name = this.name;
+		try {
+			Item result = (Item)super.clone(); // 제대로 구현하는 방법
 
-		return item;
+			return result;
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError();
+		}
+		// Item item = new Item();
+		// item.name = this.name;
+		//
+		// return item;
 	}
 }
