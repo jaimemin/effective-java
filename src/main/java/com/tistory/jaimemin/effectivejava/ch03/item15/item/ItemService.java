@@ -4,7 +4,7 @@ import com.tistory.jaimemin.effectivejava.ch03.item15.member.MemberService;
 
 public class ItemService {
 
-	private MemberService memberService;
+	private final MemberService memberService;
 
 	boolean onSale; // package-private
 
