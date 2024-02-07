@@ -1,0 +1,6 @@
+package com.tistory.jaimemin.effectivejava.ch04.item20.typeframework;
+
+public interface Singer {
+
+	AudioClip sing(Song song);
+}
