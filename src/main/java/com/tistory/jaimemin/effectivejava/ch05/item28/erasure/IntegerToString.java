@@ -20,7 +20,7 @@ public class IntegerToString {
 		 * 따라서 Object[] 배열에 String을 담을 수 있음
 		 * Object[] 배열로 선언했지만 실제 인스턴스는 String 배열
 		 * 컴파일은 되지만 문제는 있음
-		 * 배열은 공변이기 때문에 String 배열에 Integer를 넣을 때 런타임에 잡아낼 수 없음
+		 * 배열은 공변이기 때문에 String 배열에 Integer를 넣을 때 컴파일 타임에 잡아낼 수 없음
 		 * ArrayStoreException 발생
 		 * 성능적으로 인덱스에 바로 접근할 수 있기 때문에 효율이 좋지만... 안전성 떨어짐
 		 */
@@ -34,18 +34,18 @@ public class IntegerToString {
 		 * 컴파일 시점에 잡아내기 때문에 안전성 보장
 		 */
 		List<String> names = new ArrayList<>();
-		//        List<Object> objects = names;
+		// List<Object> objects = names;
 
 		/**
 		 * 제네릭과 배열을 같이 사용할 수 있다면...
 		 * 47번째 라인까지 문제 없이 돌아가지만
 		 * 48번째 라인에서 String으로 캐스팅 하려고 하는데 0번째 인덱스는 Integer 배열이기 때문에 ClassCastException
 		 */
-		//        List<String>[] stringLists = new ArrayList<String>[1];
-		//        List<Integer> intList = List.of(42);
-		//        Object[] objects = stringLists;
-		//        objects[0] = intList;
-		//        String s = stringLists[0].get(0);
-		//        System.out.println(s);
+		// List<String>[] stringLists = new ArrayList<String>[1];
+		// List<Integer> intList = List.of(42);
+		// Object[] objects = stringLists;
+		// objects[0] = intList;
+		// String s = stringLists[0].get(0);
+		// System.out.println(s);
 	}
 }

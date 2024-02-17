@@ -19,8 +19,8 @@ public class Chooser_Array {
 	}
 
 	public static void main(String[] args) {
-		List<Integer> intList = List.of(1, 2, 3, 4, 5, 6); // 숫자가 아니라면?
-
+		List<Integer> intList = List.of(1, 2, 3, 4, 5, 6);
+		// 넘겨 받는 컬렉션에 Number 타입만 있다는 것을 보장 할 수 있는가?
 		Chooser_Array chooser = new Chooser_Array(intList);
 
 		for (int i = 0; i < 10; i++) {
