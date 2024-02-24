@@ -15,6 +15,11 @@ public class Favorites2 {
 		favorites.put(typeRef, thing);
 	}
 
+	/**
+	 * 그냥 꺼내면 Object이기 때문에 T로 형변환 필요
+	 * 해당 코드는 기존 Favorite 클래스의 get 메서드처럼 typeRef.getType().getClass().cast() 적용 불가
+	 * getClass()를 했을 때 제네릭 T가 아닌 Type이기 때문
+	 */
 	@SuppressWarnings("unchecked")
 	public <T> T get(TypeRef<T> typeRef) {
 		return (T)(favorites.get(typeRef));

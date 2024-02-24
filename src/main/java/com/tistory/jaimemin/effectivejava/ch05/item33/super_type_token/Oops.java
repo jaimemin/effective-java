@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Oops {
+
 	static Favorites2 f = new Favorites2();
 
 	static <T> List<T> favoriteList() {

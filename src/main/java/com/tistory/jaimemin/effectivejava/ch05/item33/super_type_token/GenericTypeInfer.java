@@ -15,6 +15,10 @@ public class GenericTypeInfer {
 
 	public static void main(String[] args) throws NoSuchFieldException {
 		Super<String> stringSuper = new Super<>();
+		/**
+		 * 클래스가 가지고 있는 필드의 타입을 꺼내보면 Object가 나옴
+		 * 제네릭은 컴파일할 때 Object로 치환되고 T로 CASTCLASS
+		 */
 		System.out.println(stringSuper.getClass().getDeclaredField("value").getType());
 
 		// 상속을 받을 경우 타입을 알 수 있음

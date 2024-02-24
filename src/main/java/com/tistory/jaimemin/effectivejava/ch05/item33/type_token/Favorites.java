@@ -26,7 +26,7 @@ public class Favorites {
 
 	public static void main(String[] args) {
 		Favorites favorites = new Favorites();
-		favorites.put(String.class, "jaimemin");
+		favorites.put(String.class, "jaimemin"); // Class<String> = String.class
 		favorites.put(Integer.class, 2);
 		favorites.put(List.class, List.of(1, 2, 3));
 
