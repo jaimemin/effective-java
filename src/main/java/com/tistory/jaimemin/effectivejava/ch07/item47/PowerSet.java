@@ -41,7 +41,7 @@ public class PowerSet {
 
 	public static void main(String[] args) {
 		Set s = new HashSet(Arrays.asList(args));
-		
+
 		System.out.println(PowerSet.of(s));
 	}
 }
