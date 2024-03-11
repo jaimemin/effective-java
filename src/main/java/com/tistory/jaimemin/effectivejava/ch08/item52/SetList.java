@@ -21,7 +21,7 @@ public class SetList {
 			set.remove(i);
 			list.remove(i);
 		}
-		
+
 		System.out.println(set + " " + list);
 	}
 }
