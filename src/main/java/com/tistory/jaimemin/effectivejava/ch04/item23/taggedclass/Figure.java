@@ -52,7 +52,7 @@ class Figure {
             case SQUARE:
                 return length * width;
             case CIRCLE:
-                return  * (radius * radius);
+                return Math.PI * (radius * radius);
             default:
                 throw new AssertionError(shape);
         }
